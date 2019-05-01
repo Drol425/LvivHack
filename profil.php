@@ -21,7 +21,12 @@ $user_ids = $query[0]['id'];
       $name = $_POST['name'];
       $from = $_POST['from'];
       $to = $_POST['to'];
-              $pieces1 = explode("/", $from);
+
+
+      $check = $DB->query("SELECT COUNT(*) FROM `track` WHERE user_id =? AND name=?", array($user_ids,$name));
+
+        if($check[0]['COUNT(*)'] == 0){
+                              $pieces1 = explode("/", $from);
               $pieces2 = explode("/", $to);
 
               $from = $pieces1[1].'-'.$pieces1[0].'-'.$pieces1[2];
@@ -29,6 +34,7 @@ $user_ids = $query[0]['id'];
               $to = $pieces2[1].'-'.$pieces2[0].'-'.$pieces2[2];
 
       $DB->query("INSERT INTO `track` (`id`, `user_id`, `name`, `fromT`, `toT`) VALUES (NULL, ?, ?, ?, ?)", array($user_ids,$name,$from,$to));
+        }
 
 
       }
@@ -75,7 +81,6 @@ $track =  $DB->query("SELECT * FROM `track` WHERE user_id =?", array($user_ids))
                 <th>From</th>
                 <th>To</th>
                 <th>Days</th>
-                <th>Status</th>
             </tr>
             <?php
             foreach ($track as $key => $value) {
@@ -94,7 +99,6 @@ $track =  $DB->query("SELECT * FROM `track` WHERE user_id =?", array($user_ids))
                 <th><?php echo $value['fromT'] ?></th>
                 <th><?php echo $value['toT'] ?></th>
                 <th><?php echo $days ?></th>
-                <th><a name="fb_share"></a></th>
             </tr>
             <?php
           }

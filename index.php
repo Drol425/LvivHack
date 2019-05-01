@@ -79,7 +79,7 @@
             </defs>
             <rect class="booton" height="60" width="320" />
             </svg>
-            <div class="booton-text"><a href="login_signup.html" style="color:rgba(17, 21, 22, 0.884)">Let's get started!</a></div>
+            <div class="booton-text"><a href="login.php" style="color:rgba(17, 21, 22, 0.884)">Let's get started!</a></div>
         </div>
 
         <img id="tracker--img--1" src="images/watch.png" alt=""/>

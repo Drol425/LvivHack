@@ -3,6 +3,8 @@ header('Content-Type: text/html; charset=utf-8');
 // Страница авторизации
 //print_r($_POST);
 // Функция для генерации случайной строки
+// Соединямся с БД
+include('dbcon.php');
 $client_id = '948483935886-upovbebo5k0e7jvr8f4n30qv9rhf3len.apps.googleusercontent.com'; // Id приложения 18 40 
 $client_secret = 'oQEL1F_k_ARYWNCVQexpXzzE'; 
 $redirect_uri = 'http://diplom.lk3.ru/google.php'; // Redirect URIs
@@ -24,9 +26,6 @@ function generateCode($length=6) {
     }
     return $code;
 }
-
-// Соединямся с БД
-include('dbcon.php');
 
 if(isset($_POST['submit']))
 {
@@ -107,7 +106,7 @@ if(isset($_POST['submit']))
                 <p>Еще нет акаунта?</p>
                 <a href="register.php" class="InputTo Reg">Зарегистрируйтесь</a>
                 <?php
-               echo  $link = '<p><a href="' . $url . '?' . urldecode(http_build_query($params)) . '">Аутентификация через Google</a></p>';
+               echo '<p><a href="' . $url . '?' . urldecode(http_build_query($params)) . '">Аутентификация через Google</a></p>';
                  ?>
             </form>
         </div>
